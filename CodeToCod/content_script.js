@@ -33,7 +33,7 @@ function handleText(textNode)
 	v = v.replace(/\b(cod)e\b/gi, '$1');
 	v = v.replace(/\b(co(d))(ing)\b/gi, '$1d$2$3');
 	v = v.replace(/\b(co(d))(er)\b/gi, '$1d$2$3');
-	v = v.replace(/\bsource\b/g, 'sores');  //maybe bad idea?
+	v = v.replace(/\b(s)ource\b/gi, '$1ores');  //maybe bad idea?
 	textNode.nodeValue = v;
 }
 
