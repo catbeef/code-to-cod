@@ -1,4 +1,5 @@
 walk(document.body);
+setInterval(unfuddler, 1000);
 
 function walk(node) 
 {
@@ -43,3 +44,33 @@ function handleText(textNode)
 }
 
 
+function unfuddler() {
+	'use strict';
+
+	if (!location.hostname.endsWith('unfuddle.com')) return;
+
+	const mappings = [
+		{
+			selector: 'span.status-color-gray',
+			expect: 'New',
+			replace: 'Uncodded'
+		},
+		{
+			selector: 'span.status-color-purple',
+			expect: 'In Progress',
+			replace: 'Coddding'
+		},
+		{
+			selector: 'span.status-color-teal',
+			expect: 'Complete',
+			replace: 'Codded'
+		}
+	];
+
+	mappings.forEach(({ selector, expect, replace }) =>
+		Array
+			.from(document.querySelectorAll(selector))
+			.filter(node => node.textContent.includes(expect))
+			.forEach(node => node.innerHTML = replace)
+	);
+}
