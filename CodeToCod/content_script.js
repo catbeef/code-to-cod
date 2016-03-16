@@ -1,5 +1,5 @@
 walk(document.body);
-setInterval(unfuddler, 1000);
+unfuddler();
 
 function walk(node) 
 {
@@ -49,6 +49,8 @@ function unfuddler() {
 
 	if (!location.hostname.endsWith('unfuddle.com')) return;
 
+
+
 	const mappings = [
 		{
 			selector: 'span.status-color-gray',
@@ -67,10 +69,14 @@ function unfuddler() {
 		}
 	];
 
-	mappings.forEach(({ selector, expect, replace }) =>
-		Array
-			.from(document.querySelectorAll(selector))
-			.filter(node => node.textContent.includes(expect))
-			.forEach(node => node.innerHTML = replace)
-	);
+	function meat(){
+		mappings.forEach(({ selector, expect, replace }) =>
+			Array
+				.from(document.querySelectorAll(selector))
+				.filter(node => node.textContent.includes(expect))
+				.forEach(node => node.innerHTML = replace)
+		);
+	}
+
+	setInterval(meat, 1000);
 }
