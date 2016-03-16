@@ -1,5 +1,5 @@
 walk(document.body);
-unfuddler();
+setInterval(unfuddler, 1000);
 
 function walk(node) 
 {
